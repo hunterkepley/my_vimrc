@@ -19,8 +19,20 @@ Plugin 'racer-rust/vim-racer'
 " nerdtree
 Plugin 'scrooloose/nerdtree'
 
+" ctrlp
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" ale
+Plugin 'w0rp/ale'
+
 " colorscheme
 Plugin 'flazz/vim-colorschemes'
+
+" rust.vim
+Plugin 'rust-lang/rust.vim'
+
+" YCM
+Plugin 'Valloric/YouCompleteMe'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -49,6 +61,26 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 syntax on
 filetype plugin indent on
-map <C-o> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
+
+" Use all of racer
+let g:racer_experimental_completer = 1
+set hidden
+let g:racer_cmd = "/home/user/.cargo/bin/racer"
+let $RUST_SRC_PATH="/usr/local/src/rustc/src"
+
+" Better searching
+set incsearch
+set ignorecase
+set smartcase
+set wrapscan "wraps around end of file
+" Redraw screen and clear highlighting
+nnoremap <Leader>r :nohl<CR><C-L>
+
+" Ale syntax checking
+let g:ale_rust_cargo_use_check = 1
+" use Ctrl-k and Ctrl-j to jump up and down between errors
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 colorscheme seoul256-light 
